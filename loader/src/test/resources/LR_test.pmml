@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_2" version="4.2">
+    <Header>
+        <Application/>
+        <Timestamp>2019-04-02T07:23:58Z</Timestamp>
+    </Header>
+    <DataDictionary>
+        <DataField name="a1" optype="continuous" dataType="double"/>
+        <DataField name="a2" optype="continuous" dataType="double"/>
+        <DataField name="a3" optype="continuous" dataType="double"/>
+        <DataField name="a4" optype="continuous" dataType="double"/>
+        <DataField name="a5" optype="continuous" dataType="double"/>
+        <DataField name="label" optype="continuous" dataType="double"/>
+        <DataField name="prediction" optype="continuous" dataType="double"/>
+    </DataDictionary>
+    <RegressionModel functionName="regression">
+        <MiningSchema>
+            <MiningField name="label" usageType="target"/>
+            <MiningField name="a1"/>
+            <MiningField name="a2"/>
+            <MiningField name="a3"/>
+            <MiningField name="a4"/>
+            <MiningField name="a5"/>
+        </MiningSchema>
+        <RegressionTable intercept="-304.22804378697333">
+            <NumericPredictor name="a1" coefficient="31.73551781926221"/>
+            <NumericPredictor name="a2" coefficient="42.948170675703906"/>
+            <NumericPredictor name="a3" coefficient="23.7727639761748"/>
+            <NumericPredictor name="a4" coefficient="3.7056489841526687"/>
+            <NumericPredictor name="a5" coefficient="-4.183512446600658"/>
+        </RegressionTable>
+    </RegressionModel>
+</PMML>

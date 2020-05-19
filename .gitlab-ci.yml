@@ -1,0 +1,27 @@
+image: 172.16.1.99/transwarp/sophon/builder/common_gitlab:transwarp-5.1-msl5.2
+before_script:
+    - source /etc/profile
+    - source /root/.bashrc
+
+stages:
+    - build
+
+precommit_build:
+    stage: build
+    script:
+      - mvn clean install
+    except:
+      - master
+    tags:
+      - k8s
+
+postcommit_build:
+    stage: build
+    script:
+      - mvn clean deploy -DskipTests
+      - sshpass -p 123456 scp -r ./loader/target/sophon-pmml-loader*.jar ci@172.16.3.129:/mnt/disk3/ftp/ci/sophon_pmml
+      - sshpass -p 123456 scp -r ./saver/target/sophon-pmml-saver*.jar ci@172.16.3.129:/mnt/disk3/ftp/ci/sophon_pmml
+    only:
+      - master
+    tags:
+      - k8s
